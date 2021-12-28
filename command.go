@@ -786,17 +786,17 @@ func (c *Command) execute(a []string) (err error) {
 
 	// If help is called, regardless of other flags, return we want help.
 	// Also say we need help if the command isn't runnable.
-	helpVal, err := c.Flags().GetBool("help")
-	if err != nil {
-		// should be impossible to get here as we always declare a help
-		// flag in InitDefaultHelpFlag()
-		c.Println("\"help\" flag declared as non-bool. Please correct your code")
-		return err
-	}
-
-	if helpVal {
-		return flag.ErrHelp
-	}
+	//helpVal, err := c.Flags().GetBool("help")
+	//if err != nil {
+	//	// should be impossible to get here as we always declare a help
+	//	// flag in InitDefaultHelpFlag()
+	//	c.Println("\"help\" flag declared as non-bool. Please correct your code")
+	//	return err
+	//}
+	//
+	//if helpVal {
+	//	return flag.ErrHelp
+	//}
 
 	// for back-compat, only add version flag behavior if version is defined
 	if c.Version != "" {
