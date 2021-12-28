@@ -510,7 +510,7 @@ Global Flags:
 Additional help topics:{{range .Commands}}{{if .IsAdditionalHelpTopicCommand}}
   {{rpad .CommandPath .CommandPathPadding}} {{.Short}}{{end}}{{end}}{{end}}{{if .HasAvailableSubCommands}}
 
-Use "{{.CommandPath}} [command] --help" for more information about a command.{{end}}
+Use "{{.CommandPath}} help [command]" for more information about a command.{{end}}
 `
 }
 
@@ -777,7 +777,7 @@ func (c *Command) execute(a []string) (err error) {
 
 	// initialize help and version flag at the last point possible to allow for user
 	// overriding
-	c.InitDefaultHelpFlag()
+	// c.InitDefaultHelpFlag()
 	c.InitDefaultVersionFlag()
 
 	err = c.ParseFlags(a)
