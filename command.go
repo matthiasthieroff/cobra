@@ -542,11 +542,11 @@ func (c *Command) VersionTemplate() string {
 }
 
 func hasNoOptDefVal(name string, fs *flag.FlagSet) bool {
-	flag := fs.Lookup(name)
-	if flag == nil {
+	flg := fs.Lookup(name)
+	if flg == nil {
 		return false
 	}
-	return flag.NoOptDefVal != ""
+	return flg.NoOptDefVal != ""
 }
 
 func shortHasNoOptDefVal(name string, fs *flag.FlagSet) bool {
@@ -554,11 +554,11 @@ func shortHasNoOptDefVal(name string, fs *flag.FlagSet) bool {
 		return false
 	}
 
-	flag := fs.ShorthandLookup(name[:1])
-	if flag == nil {
+	flg := fs.ShorthandLookup(name[:1])
+	if flg == nil {
 		return false
 	}
-	return flag.NoOptDefVal != ""
+	return flg.NoOptDefVal != ""
 }
 
 func stripFlags(args []string, c *Command) []string {
@@ -614,8 +614,7 @@ func argsMinusFirstX(args []string, x string) []string {
 }
 
 func isFlagArg(arg string) bool {
-	return ((len(arg) >= 3 && arg[1] == '-') ||
-		(len(arg) >= 2 && arg[0] == '-' && arg[1] != '-'))
+	return (len(arg) >= 3 && arg[1] == '-') || (len(arg) >= 2 && arg[0] == '-' && arg[1] != '-')
 }
 
 // Find the target command given the args and command tree
@@ -1205,7 +1204,7 @@ main:
 
 // Print is a convenience method to Print to the defined output, fallback to Stderr if not set.
 func (c *Command) Print(i ...interface{}) {
-	fmt.Fprint(c.OutOrStderr(), i...)
+	_, _ = fmt.Fprint(c.OutOrStderr(), i...)
 }
 
 // Println is a convenience method to Println to the defined output, fallback to Stderr if not set.
@@ -1220,7 +1219,7 @@ func (c *Command) Printf(format string, i ...interface{}) {
 
 // PrintErr is a convenience method to Print to the defined Err output, fallback to Stderr if not set.
 func (c *Command) PrintErr(i ...interface{}) {
-	fmt.Fprint(c.ErrOrStderr(), i...)
+	_, _ = fmt.Fprint(c.ErrOrStderr(), i...)
 }
 
 // PrintErrln is a convenience method to Println to the defined Err output, fallback to Stderr if not set.
