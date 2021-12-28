@@ -470,13 +470,14 @@ func (c *Command) CommandPathPadding() int {
 }
 
 var minNamePadding = 11
+var minNameSpacing = 3
 
 // NamePadding returns padding for the name.
 func (c *Command) NamePadding() int {
-	if c.parent == nil || minNamePadding > c.parent.commandsMaxNameLen {
+	if c.parent == nil || minNamePadding > c.parent.commandsMaxNameLen+minNameSpacing {
 		return minNamePadding
 	}
-	return c.parent.commandsMaxNameLen
+	return c.parent.commandsMaxNameLen + minNameSpacing
 }
 
 // UsageTemplate returns usage template for the command.
