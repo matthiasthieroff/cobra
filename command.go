@@ -1051,7 +1051,7 @@ func (c *Command) InitDefaultVersionFlag() {
 
 	c.mergePersistentFlags()
 	if c.Flags().Lookup("version") == nil {
-		usage := "version for "
+		usage := "Show version for "
 		if c.Name() == "" {
 			usage += "this command"
 		} else {
